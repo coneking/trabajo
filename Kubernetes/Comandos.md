@@ -9,12 +9,12 @@ Contenido del archivo `new_nodes`:
 
 ```
 [new]
-172.18.171.90
+10.10.10.10
 
 [new:vars]
 ansible_connection=ssh
 ansible_ssh_user=root
-ansible_ssh_pass=Tecnologia123
+ansible_ssh_pass=Mipassword
 host_key_checking=false
 ```
 
@@ -59,8 +59,8 @@ Playbook para agregar llave:
 ---
 - hosts: all
   vars:
-    ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCH5Zg0WoClBhqToE+9uDsoTeTG5+ZUdyvjXCS2hxC7OQ0q3KbyY1G2PoTaTMGYw8CAqxE5DpBCY/JiN3FT9FdipQR2PAU1fbPFyIrvGUpYmXYOsXWVXWDj4UEUVxpKgh7GkuBIt8RgpqNQ2u+DfAxUh2R2VHyBEcZWgDeXHA0tRFAcHlGpmQUB9MsV/R3vOwk8m+s9jI4NxZ4WcvO7gzvbOdar2VF8Tv7N41vn+gd0owWAasAtyfMkHq0Dc0C0Wm2CjNcaPVwusBAMVZiw2lo8EI4eOtJhFaX59ILIw5+jO/ZjmwuxBfZQtOMjUmJxxX8rYMBrTVsYTBJ6rr7SpPDl labk8s
-  remote_user: root
+    ssh_key: "llave_ssh-rsa_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+    remote_user: root
   become: true
   tasks:
     - name: copiar llave publica de usuario
