@@ -1,3 +1,18 @@
+# Kubernetes
+
+## ¿Qué es Kubernetes?
+
+Kubernetes es una herramienta open source que permite la orquestación de contenedores [docker](https://github.com/coneking/trabajo/tree/master/Docker).
+
+
+## Conceptos
+
+- **Nodo**: Servidor físico o virtual que contiene `pods`.
+- **Pods**: Grupo de contenedores en los que se despliegan aplicaciones.
+- **Replication Controller**: Administra pods y se asegura que las ***réplicas*** de los pods estén ejecutándose. Facilita el escalar sistemas y si existe algún error en un pod, lo puede crear nuevamente.
+- **Service**: Define como aceder a un pod o a un grupo de pods.
+
+
 # Comandos Kubernetes
 
 Revisar el uso de los nodos
