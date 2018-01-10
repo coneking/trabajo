@@ -1,117 +1,139 @@
-# Kubernetes
+# Comandos Kubernetes
 
-## Adicionar worker a un cluster kubernetes
-
-
-## Agregar permisos de sudo a los servidores del archivo `new_nodes`
-
-Contenido del archivo `new_nodes`:
-
+Revisar el uso de los nodos
 ```
-[new]
-10.10.10.10
-
-[new:vars]
-ansible_connection=ssh
-ansible_ssh_user=root
-ansible_ssh_pass=Mipassword
-host_key_checking=false
+$ kubectl top nodes
 ```
+<br>
 
-
-Playboook para agregar sudo:
-
+Revisar el uso de los pods
 ```
----
-- hosts: all
-  remote_user: root
-  become: true
-  tasks:
-    - name: comentar permiso de wheel con passwd
-      lineinfile:
-        path: /etc/sudoers
-        state: present
-        regexp: '^%wheel\s'
-        line: '#%wheel  ALL=(ALL)       ALL'
-    - name: descomentar permiso de wheel sin passwd
-      lineinfile:
-        path: /etc/sudoers
-        state: present
-        regexp: '^# %wheel\s'
-        line: '%wheel  ALL=(ALL)       NOPASSWD: ALL'
+$ kubectl top -n "nombre_del_namespace" pod
 ```
 
 <br>
 
-Ejecutar el playbook para agregar sudo:
+Ver los cluster configurados.
+```
+$ kubectl config get-contexts
+CURRENT   NAME      CLUSTER   AUTHINFO    NAMESPACE
+*         cl_prod   cl_prod   admin
+          cl_lab    cl_lab    admin-lab
+```
+>El `*` indica el cluster en el que estamos actualmente.
 
-```
-ansible-playbook -i new_nodes sudowheel.yml
-```
-   
 <br>
 
-## Agregar llave ssh del usuario root.
-
-Playbook para agregar llave:
-
+Obtener solo los nombres de los clusters.
 ```
----
-- hosts: all
-  vars:
-    ssh_key: "llave_ssh-rsa_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
-    remote_user: root
-  become: true
-  tasks:
-    - name: copiar llave publica de usuario
-      authorized_key: user=root key={{ssh_key}} manage_dir=yes state=present
+$ kubectl config get-clusters
+NAME
+cl_prod
+cl_lab
 ```
-   
 <br>
 
-Ejecutar el playbook para copiar la llave:
-
+Ver el cluster en el que nos encontramos.
 ```
-ansible-playbook -i new_nodes labk8s.yml
+$ kubectl config current-context
+cl_prod
 ```
 
->Con esto el servidor tiene lo necesario para poder ser agregado al cluster de kubernetes.
+<br>
 
-
-## Agregando el nodo
-
+Cambiar entre clusters.
 ```
-./kismatic install add-worker nombre_del_nodo ip_del_nodo
+$ kubectl use-context cl_lab
+Switched to context "cl_lab".
+```
 
-	Running Pre-Flight Checks On New Worker=============================================
-	Configure Cluster Prerequisites                                                 [OK]
-	Gather Node Facts                                                               [OK]
-	Update Hosts File                                                               [SKIPPED]
-	Run Cluster Pre-Flight Checks                                                   [OK]
+<br>
 
-	Generating Certificate For Worker Node==============================================
-	Generated certificate for g500603svgdm kubelet                                  [OK]
-	Found valid certificate for kube-proxy                                          [OK]
-	Found valid certificate for etcd client                                         [OK]
+Consultar nodos de un cluster.
+```
+$ kubectl get nodes
+NAME           STATUS                     ROLES     AGE       VERSION
+nodo1   Ready,SchedulingDisabled   <none>    16h       v1.7.4
+nodo2   Ready                      <none>    66d       v1.7.4
+nodo3   Ready,SchedulingDisabled   master    100d      v1.7.4
+nodo4   Ready,SchedulingDisabled   master    100d      v1.7.4
+nodo5   Ready                      <none>    100d      v1.7.4
+nodo6   Ready                      <none>    100d      v1.7.4
+nodo7   Ready                      <none>    100d      v1.7.4
+nodo8   Ready                      <none>    100d      v1.7.4
+nodo9   Ready,SchedulingDisabled   <none>    100d      v1.7.4
+nodo10  Ready,SchedulingDisabled   <none>    100d      v1.7.4
+```
 
-	Adding Worker Node to Cluster=======================================================
-	Configure Cluster Prerequisites                                                 [OK]
-	Gather Node Facts                                                               [OK]
-	Update Hosts File                                                               [SKIPPED]
-	Deploy Cluster Certificates                                                     [OK]
-	Generate Kubectl Config File                                                    [OK]
-	Configure Kismatic Package Repos                                                [OK]
-	Install Docker                                                                  [OK]
-	Start Kubernetes Kubelet                                                        [OK]
-	Start Kubernetes Proxy                                                          [OK]
-	Configure Kubernetes CNI                                                        [OK]
-	Start Calico Network Components                                                 [OK]
-	Validate Calico Network Components                                              [OK]
-	Start Weave Network Components                                                  [SKIPPED]
-	Validate Weave Network Components                                               [SKIPPED]
-	Start Contiv Network Components                                                 [SKIPPED]
-	Update Kismatic Version File                                                    [OK]
+<br>
 
-	Running New Worker Smoke Test=======================================================
-	Smoke Test New Worker                                                           [OK]
+Quitar un nodo del cluster.
+```
+$ kubectl drain "nombre_del_nodo" --ignore-daemonsets --force --delete-local-data
+node "nombre_del_nodo" cordoned
+WARNING: Ignoring DaemonSet-managed pods: tick-polling-telegraf-ds-6g3h3, calico
+t or StatefulSet: kube-proxy-nombre_del_nodo
+node "nombre_del_nodo" drained
+```
+
+<br>
+
+Reintegrar un nodo al cluster.
+```
+$ kubectl uncordon "nombre_del_nodo"
+```
+
+<br>
+
+Listar los namespaces.
+```
+$ kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    150d 
+My_ns         Active    40d
+Other_ns      Active    32d
+```
+
+<br>
+
+Listar todos los pods de todos los namespaces.
+```
+$ kubectl get pods --all-namespace
+```
+
+<br>
+
+Listar los pods de un namespace
+```
+$ kubectl -n "nombre_del_namespace" get pods
+```
+
+<br>
+
+Listar los pods con el nodo y la IP que los contiene.
+```
+$ kubectl -n "nombre_del_namespace" get pods -o wide
+```
+
+<br>
+
+Revisar logs de un pod
+```
+$ kubectl -n "nombre_del_namespace" logs "nombre_del_pod"
+```
+>Si el pod está compuesto de más de un contenedor se debe elegir el contenedor (la opción `-f` es paracontinuar revisando el log)
+`kubectl -n "nombre_del_namespace" logs "nombre_del_pod" -c "nombre_del_contenedor" -f`
+
+<br>
+
+Información detallada de un pod
+```
+$ kubectl -n "nombre_del_namespace" describe pods "nombre_del_pod"
+```
+
+<br>
+
+Eliminar un pod.
+```
+$ kubectl -n "nombre_del_namespace" delete pods "nombre_del_pod"
 ```
