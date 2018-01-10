@@ -1,2 +1,8 @@
-# trabajo
-Herramientas de trabajo.
+# Herramientas de trabajo
+
+- GIT
+- Docker
+- Kubernetes
+- Ansible
+- Python
+- Markdown
