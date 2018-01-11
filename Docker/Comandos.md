@@ -11,6 +11,7 @@ Ver las imágenes que se han descargado:
 Buscar imágenes de docker:
 	
 	docker search nombre_de_la_imagen
+>Por defecto las imágenes son buscadas en Docker Hub.
 
 <br>
 
@@ -25,13 +26,14 @@ Descargar una imagen:
 Iniciar un contenedor:
 	
 	docker run nombre_de_la_imagen
-(Se le asignará un ID al contenedor y un nombre, por defecto si la imagen no la tenemos, la descargará)
+>Se le asignará un ID al contenedor y un nombre, por defecto si la imagen no la tenemos, la descargará.
 
 <br>
 
 Iniciar un contenedor y dejarlo activo en background:
 	
 	docker run -d nombre_de_la_imagen
+>La opción `-d` o `--detach` mantiene el contenedor ejecutándose en background.
 
 <br>
 
@@ -41,19 +43,31 @@ Iniciar un contenedor, dejarlo activo y darle un nombre:
 
 <br>
 
-Inspeccionar un contenedor (configuración, Ip, etc):
+Inspeccionar un contenedor (Fecha de creación, Ip, su estado, volúmenes, puntos de montaje, etc):
 	
 	docker inspect nombre_del_contendor
 ***
 <br>
 
-## Logs
+## Logs y Estado
 
 Ver el log de un contenedor:
 	
 	docker logs nombre_del_contenedor
-***
+
 <br>
+
+Ver el estado de un contenedor
+
+	docker top nombre_del_contenedor
+
+<br>
+
+Mostrar el uso de un contenedor
+
+	docker stats nombre_del_contenedor
+>Mostrará datos como el uso de CPU, Memoria, IO, etc.
+Si no se especifica el nombre del contenedor, traerá el estado de todos los contenedores.
 
 ## Mapear puertos
 
