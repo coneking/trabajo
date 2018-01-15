@@ -101,7 +101,7 @@ $ ./kismatic install plan
     - 0 nfs volumes
 ```
 >En el ejemplo se creó un Cluster con un nodo etcd, un nodo master, un nodo ingress y dos nodos worker. Para etcd, master e ingress el nodo01 cumplirá dicha función, el roll de worker será para el nodo02 y nodo03.<br>
-**IMPORTANTE**: Toda la configuración queda almacenada en el archivo [kismatic-cluster.yaml](/Kismatic_Cluster_yaml.md). Antes de iniciar el instalador se deben modificar algunas opciones de este archivo.
+**IMPORTANTE**: Toda la configuración queda almacenada en el archivo [kismatic-cluster.yaml](/Cluster/Kismatic_Cluster_yaml.md). Antes de iniciar el instalador se deben modificar algunas opciones de este archivo.
 
 <br>
 
