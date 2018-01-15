@@ -1,5 +1,7 @@
 # Cluster Kubernetes (Kismatic)
 
+<br>
+
 ## Descargar y descomprimir Kismatic
 
 ```sh
