@@ -1,4 +1,4 @@
-# Kubernetes
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Kubernetes/images/kubernetes.png" width="500" /></p>
 
 ## ¿Qué es Kubernetes?
 
