@@ -43,6 +43,15 @@ Iniciar un contenedor, dejarlo activo y darle un nombre:
 
 <br>
 
+Iniciar un contenedor y pasarle variables de entorno:
+
+```
+docker run -d --name BD -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql
+```
+>En este ejemplo se creó el contenedor `BD` y con el parámetro `-e` se le asignó la variable **MYSQL_RANDOM_ROOT_PASSWORD=true**, la cual crea una contraseña random para el usuario root de la bd mysql.
+
+<br>
+
 Inspeccionar un contenedor (Fecha de creación, Ip, su estado, volúmenes, puntos de montaje, etc):
 	
 	docker inspect nombre_del_contendor
