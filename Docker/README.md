@@ -88,5 +88,4 @@ Se utiliza para implementar un contenedor Docker en un entorno clusterizado.
 
 <br>
 
-## **Comandos Docker** [<kbd>&#9193;</kbd>](/Docker/Comandos.md)
-## **Comandos Docker** [<kbd>&#11177;</kbd>](/Docker/Comandos.md)
+### **Comandos Docker** [<kbd>&#9193;</kbd>](/Docker/Comandos.md)
