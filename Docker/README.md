@@ -11,7 +11,7 @@ Docker es un proyecto Opensource que permite desplegar aplicaciones en contenedo
 ## ¿Qué son los contenedores?
 
 Los contenedores son una tecnología de virtualización que se basa en la ejecución de instancias de sistemas operativos desde un servidor (host) físico.
-Los contenedores utilizan las librerías, binarios, dependencias y recursos del Host local, usan una imagen base para su creación.
+Los contenedores utilizan las librerías, binarios, dependencias y recursos del host local. Usan una imagen base para su creación.
 
 <p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/master/Docker/images/container.png" width="500" /></p>
 
@@ -32,19 +32,14 @@ Por otra parte, las máquinas virtuales necesitan la instalación de un Sistema 
 
 ## Componentes de Docker
 
-- [Docker](#docker)
-    - [¿Qué es Docker?](#%C2%BFqu%C3%A9-es-docker)
-    - [¿Qué son los contenedores?](#%C2%BFqu%C3%A9-son-los-contenedores)
-    - [Contenedores VS Máquinas virtuales.](#contenedores-vs-m%C3%A1quinas-virtuales)
-    - [Componentes de Docker](#componentes-de-docker)
-        - [Docker Daemon](#docker-daemon)
-        - [Docker Client](#docker-client)
-        - [Docker Image](#docker-image)
-        - [Docker Hub](#docker-hub)
-        - [Dockerfile](#dockerfile)
-        - [Docker Container](#docker-container)
-        - [Docker Registry](#docker-registry)
-        - [Docker Swarm](#docker-swarm)
+- [Docker Daemon](#docker-daemon)
+- [Docker Client](#docker-client)
+- [Docker Image](#docker-image)
+- [Docker Hub](#docker-hub)
+- [Dockerfile](#dockerfile)
+- [Docker Container](#docker-container)
+- [Docker Registry](#docker-registry)
+- [Docker Swarm](#docker-swarm)
 
 
 <br>
@@ -93,4 +88,5 @@ Se utiliza para implementar un contenedor Docker en un entorno clusterizado.
 
 <br>
 
-**Comandos Docker** [<kbd>&#10154;</kbd>](/Docker/Comandos.md)
+## **Comandos Docker** [<kbd>&#9193;</kbd>](/Docker/Comandos.md)
+## **Comandos Docker** [<kbd>&#11177;</kbd>](/Docker/Comandos.md)
