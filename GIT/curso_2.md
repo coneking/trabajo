@@ -3,8 +3,10 @@
 Hagamos un repaso... ¿Qué aprendimos en la primera parte de este curso?
 
 ## Contenido
+
 <details>
 <summary>Expandir</summary>
+
 - Inicializar un repositorio
 - Los tres estados de git.
 - Revisar los commits realizados.
@@ -12,8 +14,10 @@ Hagamos un repaso... ¿Qué aprendimos en la primera parte de este curso?
 - Recuperar archivos.
 - Eliminar y revertir commits.
 - Inspeccionar commits
+
 </details>
 
+<br>
 
 Todo lo que vimos anteriormente se enfocaba en las principales funcionalidades de git orientado al uso local.
 Lo que veremos ahora será el uso más potente de git, mediante repositorios externos y trabajo colaborativo.
