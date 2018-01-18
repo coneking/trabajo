@@ -104,7 +104,7 @@ Cuando tenemos nuestro repositorio agregado en nuestro equipo podemos hacer camb
 **Push**: permite subir cambios al repositorio remoto una vez que creamos un commit, los cuales tamién son exportados.<br>
 **Pull**: permite descargar cambios que se hayan generado en el repositorio remoto (commits, archivos, ramas) para mantener actualizado el repositorio local.<br>
 
-**Ejemplo:**
+**Ejemplo Push:**
 
 Haremos un cambio en el achivo README.md y luego un commit.
 
@@ -130,6 +130,32 @@ $ git push origin master
 	To https://github.com/coneking/test.git
 	   3a6c6bf..ea849b9  master -> master
 ```
+
+<br>
+
+**Ejemplo Pull:**
+
+Haremos un cambio al archivo README.md desde la web de GitHub y luego en nuestro repositorio local lo descargaremos mediante pull.
+
+```sh
+$ git pull origin master
+	remote: Counting objects: 3, done.
+	remote: Compressing objects: 100% (2/2), done.
+	remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+	Unpacking objects: 100% (3/3), done.
+	From https://github.com/coneking/test
+	* branch            master     -> FETCH_HEAD
+	ea849b9..2e35a24  master     -> origin/master
+	Updating ea849b9..2e35a24
+	Fast-forward
+	README.md | 9 +++++++--
+	1 file changed, 7 insertions(+), 2 deletions(-)
+```
+
+>**Nota**: Es recomendable hacer un pull del repositorio antes de enviar nuestros cambios, esto debido a que, si el repositorio externo está más actualizado que el nuestro (debido a cambios de otras personas) no dejará que se hagan "push".
+
+<br>
+
 ## Conflictos
 
 Al trabajar con ramas, se nos puede presentar el caso de tener *conflictos*.
@@ -167,3 +193,56 @@ Cambios dia 02 enero
 >>>>>>> 57894ff9df56e924521009fb95b17655c4598fe5
 ```
 Aca podemos editar y dejar los cambios que correspondan. Tambien deberemos eliminar las lineas agregaras para señalar los cambios. Luego de guardar los cambios, ya podemos ejecutar *git commit* y *git push* para sincronizar los cambios.
+
+<br>
+
+## Ramas
+
+El concepto de ramificación puede ser uno de los puntos más fuertes de git, y es que se basa en el trabajo colaborativo paralelo de un proyecto. Para explicarlo de una manera más sencilla diremos que tenemos una línea de tiempo con commits hechos por la rama ***master*** (rama que se crea por defecto).
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama1.png" width="500" /></p>
+
+Ahora crearemos una rama con el comando `git branch "nombre_de_la_rama"` y luego nos cambiaremos a esa rama con el comando `git checkout "nombre_de_la_imagen"` para trabajar en paralelo a la rama master.
+
+```sh
+$ git branch testing
+```
+
+> Para ver las ramas locales se ejecuta el comando `git branch` donde un "*" indicará en cual rama estamos actualmente.<br>
+> Para listar todas las ramas (locales y remotas) ejecutamos el mando `git branch -a`.
+
+<br>
+
+Ahora tenemos dos ramas ***master*** y ***testing***, ambas apuntando al mismo commit *f30ab*. 
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama2.png" width="500" /></p>
+
+<br>
+
+Nos cambiaremos a la rama "testing" con el comando `git checkout "nombre_de_la_rama"`.
+
+```sh
+$ git checkout testing
+	Switched to branch 'testing'
+```
+
+Al cambiarnos a nuestra nueva rama, el **HEAD** se irá también a esa rama y podremos crear un nuevo commit para trabajar en paralelo a "master". 
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama3.png" width="500" /></p>
+>HEAD se mueve al cambiarse entre ramas, en este caso ambas ramas apuntan al mismo commit.
+
+<br>
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama4.png" width="500" /></p>
+
+<br>
+
+En este ejemplo la nueva rama creó el commit *c2b9e*. Los cambios agregados en este commit no los puede ver la rama "master" ya que, si nos cambiamos a la rama master, veremos que el HEAD sigue estando en el commit *f30ab*.<br>
+Continuando con el ejemplo nos devolveremos a la rama "master" y al hacer un commit la línea de tiempo se bifurcará.
+
+```sh
+$ git checkout master
+	Switched to branch 'master'
+	Your branch is up to date with 'origin/master'.
+```
+
