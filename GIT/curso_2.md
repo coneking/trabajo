@@ -7,7 +7,7 @@ Hagamos un repaso... ¿Qué aprendimos en la primera parte de este curso?
 <details>
 <summary>Expandir</summary>
 
-- Inicializar un repositorio
+- Inicializar un repositorio.
 - Los tres estados de git.
 - Revisar los commits realizados.
 - Ejemplos prácticos.
