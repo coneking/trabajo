@@ -40,7 +40,7 @@ GitHub tiene dos versiones disponibles:
 Una vez que estamos registrados y logueados en GitHub, crearemos nuestro primer repositorio. Para esto tenemos que ir al botón <kbd>Start a project</kbd> y crearemos un repositorio gratuito, en este caso se llamará "test".<br>
 Marcamos la casilla **Initialize this repository with a README** para crear un achivo readme que será el de presentación y vamos al botón <kbd>Create repository</kbd>.
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/repo_test.png" width="300" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/repo_test.png" width="600" /></p>
 
 <br>
 
@@ -50,7 +50,7 @@ Clonar un repositorio basicamente es descagarlo desde la nube con toda su config
 Para clonar el repositorio existen dos opciones, una es clonarlo a través de su URL y la otra es clonarlo mediante llave SSH, para este caso usaremos la primera opción.<br>
 Seleccionamos el botón <kbd>Clone or download</kbd>, copiamos la URL, ejemplo: https://github.com/coneking/test.git y en un directorio de nuestro equipo ejecutamos el comando `git clone "URL"`.
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/clonar.png" width="300" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/clonar.png" width="400" /></p>
 
 <br>
 
