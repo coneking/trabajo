@@ -34,7 +34,4 @@ Cambio dia 01 enero
 Cambios dia 02 enero
 >>>>>>> 57894ff9df56e924521009fb95b17655c4598fe5
 ```
-Aca podemos editar y dejar los cambios que correspondan. Tambien deberemos eliminar las lineas agregaras para señalar los cambios.
-
-
-
+Aca podemos editar y dejar los cambios que correspondan. Tambien deberemos eliminar las lineas agregaras para señalar los cambios. Luego de guardar los cambios, ya podemos ejecutar *git commit* y *git push* para sincronizar los cambios.
