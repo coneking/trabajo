@@ -154,15 +154,22 @@ $ git pull origin master
 
 >**Nota**: Es recomendable hacer un pull del repositorio antes de enviar nuestros cambios, esto debido a que, si el repositorio externo está más actualizado que el nuestro (debido a cambios de otras personas) no dejará que se hagan "push".
 
-<br>
-
+<br>/
 ## Ramas
 
-El concepto de ramificación puede ser uno de los puntos más fuertes de git, y es que se basa en el trabajo colaborativo paralelo de un proyecto. Para explicarlo de una manera más sencilla diremos que tenemos una línea de tiempo con commits hechos por la rama ***master*** (rama que se crea por defecto).
+El concepto de ramificación puede ser uno de los puntos más fuertes de git, y es que se basa en el trabajo colaborativo paralelo de un proyecto. 
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama1.png" width="500" /></p>
+<br>
 
-Ahora crearemos una rama con el comando `git branch "nombre_de_la_rama"` y luego nos cambiaremos a esa rama con el comando `git checkout "nombre_de_la_imagen"` para trabajar en paralelo a la rama master.
+**Ejemplo**
+
+Para explicarlo de una manera más sencilla diremos que tenemos una línea de tiempo con commits hechos por la rama **master** (rama que se crea por defecto).
+
+
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama1.png" width="400" /></p>
+
+Para comenzar crearemos una rama con el comando `git branch "nombre_de_la_rama"`.
 
 ```sh
 $ git branch testing
@@ -172,32 +179,35 @@ $ git branch testing
 > Para listar todas las ramas (locales y remotas) ejecutamos el mando `git branch -a`.
 
 <br>
-
-Ahora tenemos dos ramas ***master*** y ***testing***, ambas apuntando al mismo commit *f30ab*. 
-
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama2.png" width="500" /></p>
-
 <br>
 
-Nos cambiaremos a la rama "testing" con el comando `git checkout "nombre_de_la_rama"`.
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama2.png" width="400" /></p>
+
+Como muestra la imagen, tenemos dos ramas; ***master*** y ***testing***, ambas apuntando al mismo commit *f30ab*.<br>
+Nos cambiaremos a la rama "testing" con el comando `git checkout "nombre_de_la_rama"` para trabajar en paralelo a la rama master.
 
 ```sh
 $ git checkout testing
 	Switched to branch 'testing'
 ```
 
-Al cambiarnos a nuestra nueva rama, el **HEAD** se irá también a esa rama y podremos crear un nuevo commit para trabajar en paralelo a "master". 
+<br>
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama3.png" width="500" /></p>
->HEAD se mueve al cambiarse entre ramas, en este caso ambas ramas apuntan al mismo commit.
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama3.png" width="400" /></p>
+
+>**HEAD** se mueve al cambiarse entre ramas, en este caso a **testing** y podemos observar que ambas ramas apuntan al mismo commit "f30ab".
+
+<br>
+<br>
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama4.png" width="400" /></p>
 
 <br>
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama4.png" width="500" /></p>
+En este ejemplo la nueva rama creó el commit *c2b9e*. Los cambios agregados en este commit no los puede ver la rama "master" ya que, si nos cambiamos a la rama master, veremos que HEAD sigue estando en el commit *f30ab*.
 
 <br>
 
-En este ejemplo la nueva rama creó el commit *c2b9e*. Los cambios agregados en este commit no los puede ver la rama "master" ya que, si nos cambiamos a la rama master, veremos que el HEAD sigue estando en el commit *f30ab*.<br>
 Continuando con el ejemplo nos devolveremos a la rama "master" y al hacer un commit la línea de tiempo se bifurcará.
 
 ```sh
@@ -205,6 +215,23 @@ $ git checkout master
 	Switched to branch 'master'
 	Your branch is up to date with 'origin/master'.
 ```
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama5.png" width="400" /></p>
+
+Ahora tenemos un commit creado por en la rama testing (c2b9e) y otro en la rama master (87ab2). Cada rama hará cambios en su propia línea de tiempo, los cuales al final se *fusionarán* en la rama principal del proyecto.<br>
+Con esto se demuestra el trabajo colaborativo/paralelo en un proyecto mediante ramas.
+
+<br>
+
+## Merge entre ramas
+
+Para integrar los cambios de una rama a otra se utiliza el concepto de **fusión** o **merge**. La sintaxis del comando es la siguiente y se debe ejecutar en la rama a la cual queremos integrar los cambios`git merge "rama_con_cambios_a_integrar"`.
+
+<br>
+
+**Ejemplo**
+
+Crearemos un archivo en la rama testing de nuestro proyecto y posteriormente fucionaremos este cambio a la rama *master*.
 
 <br>
 
