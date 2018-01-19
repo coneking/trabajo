@@ -58,6 +58,13 @@ Inspeccionar un contenedor (Fecha de creación, Ip, su estado, volúmenes, punto
 ***
 <br>
 
+Si por algun motivo, queremos acceder a la consola de un contenedor que ya esta corriendo, podemos ejecutar lo siguiente:
+
+```
+docker exec -it id_del_contenedor bash
+```
+>Esto nos deja como root en la consola del contenedor.
+
 ## Logs y Estado
 
 Ver el log de un contenedor:
@@ -112,7 +119,7 @@ Con esto si eliminamos el contenedor, la data seguirá existiendo en el S.O en l
 	docker run -d --name "nombre" -v "/var/container/info:/opt/info" nombre_del_contenedor
 
 <br>
-
+ 
 Los contenedores se ejecutan en background con la opción -d, si a un contenedor se le da un comando para ejecutar, ejecutará la acción y dejará de correr.
 
 #### Ejemplo:
@@ -129,6 +136,7 @@ Para crear un contenedor e ingresar a él, se puede crear de forma interactiva c
 	docker run -it --name "nombre" ubuntu /bash
 ***
 <br>
+
 
 ## Dockerfile
 
