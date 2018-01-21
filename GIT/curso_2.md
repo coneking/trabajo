@@ -100,7 +100,7 @@ $ git pull origin master
 
 ## Push y Pull
 
-Cuando tenemos nuestro repositorio agregado en nuestro equipo podemos hacer cambios a al proyecto y subirlos a GitHub mediante "push".<br>
+Cuando tenemos nuestro repositorio agregado en nuestro equipo podemos hacer cambios al proyecto y subirlos a GitHub mediante "push".<br>
 **Push**: permite subir cambios al repositorio remoto una vez que creamos un commit, los cuales tamién son exportados.<br>
 **Pull**: permite descargar cambios que se hayan generado en el repositorio remoto (commits, archivos, ramas) para mantener actualizado el repositorio local.<br>
 
@@ -154,84 +154,145 @@ $ git pull origin master
 
 >**Nota**: Es recomendable hacer un pull del repositorio antes de enviar nuestros cambios, esto debido a que, si el repositorio externo está más actualizado que el nuestro (debido a cambios de otras personas) no dejará que se hagan "push".
 
-<br>/
+<br>
+
 ## Ramas
 
-El concepto de ramificación puede ser uno de los puntos más fuertes de git, y es que se basa en el trabajo colaborativo paralelo de un proyecto. 
+El concepto de ramificación puede ser uno de los puntos más fuertes de git, y es que se basa en el trabajo colaborativo paralelo de un proyecto.
+Para explicar un poco más a fondo como funcionan las ramas sigan a Octocat [:octocat:](/GIT/ramas.md).<br>
+Por ahora nos centraremos en la creación de ramas y la fusión entre ellas.
 
-<br>
+### Creación de Ramas
 
-**Ejemplo**
+En git podemos crear cuantas ramas estimemos y una vez cumplan su función eliminarlas. Para saber en que rama nos encontramos utlizamos el comado `git branch` donde un "\*" nos notificará la rama actual.<br>
+Si deseamos crear una rama usamos el comando `git branch nombre_de_la_rama`.<br>
 
-Para explicarlo de una manera más sencilla diremos que tenemos una línea de tiempo con commits hechos por la rama **master** (rama que se crea por defecto).
-
-
-
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama1.png" width="400" /></p>
-
-Para comenzar crearemos una rama con el comando `git branch "nombre_de_la_rama"`.
+**Ejemplo:**
 
 ```sh
-$ git branch testing
-```
+$ git branch
+* master
 
-> Para ver las ramas locales se ejecuta el comando `git branch` donde un "*" indicará en cual rama estamos actualmente.<br>
-> Para listar todas las ramas (locales y remotas) ejecutamos el mando `git branch -a`.
+$ git branch desarrollo
 
-<br>
-<br>
-
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama2.png" width="400" /></p>
-
-Como muestra la imagen, tenemos dos ramas; ***master*** y ***testing***, ambas apuntando al mismo commit *f30ab*.<br>
-Nos cambiaremos a la rama "testing" con el comando `git checkout "nombre_de_la_rama"` para trabajar en paralelo a la rama master.
-
-```sh
-$ git checkout testing
-	Switched to branch 'testing'
+$ git branch
+  desarrollo
+* master
 ```
 
 <br>
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama3.png" width="400" /></p>
+Para cambiar a una rama existente usamos el comando `git checkout nombre_de_la_rama`.
 
->**HEAD** se mueve al cambiarse entre ramas, en este caso a **testing** y podemos observar que ambas ramas apuntan al mismo commit "f30ab".
+```sh
+$ git checkout desarrollo
+Switched to branch 'desarrollo'
+
+$ git branch
+* desarrollo
+  master
+```
+>Existe la opción de crear una rama y cambiarse a ella de forma automática, esto se hace ejecutando `git checkout -b nombre_de_la_rama`.
+
+Ahora que tenemos las ramas *master* y *desarrollo* podemos trabajar de forma paralela con los mismos archivos del proyecto pero de forma independiente, esto quiere decir que los cambios que se realicen en una rama, no serán percibidos por las otras.<br>
+
+### Ejemplo trabajo con ramas
+
+Crearemos un archivo en la rama *desarrollo* luego haremos su respectivo commit y listaremos los archivos del proyecto.
+
+```sh
+$ git checkout desarrollo
+Switched to branch 'desarrollo'
+
+$ echo "trabajo en rama desarrollo" >> desarrollo.txt
+
+$ git add desarrollo.txt
+warning: LF will be replaced by CRLF in desarrollo.txt.
+The file will have its original line endings in your working directory.
+
+$ git commit -m "Archivo creado en la rama desarrollo"
+[desarrollo 869a6ba] Archivo creado en la rama desarrollo
+ 1 file changed, 1 insertion(+)
+ create mode 100644 desarrollo.txt
+
+$ git log --oneline
+869a6ba (HEAD -> desarrollo) Archivo creado en la rama desarrollo
+2e35a24 (origin/master, master) Commit desde GitHub
+ea849b9 Primer push
+3a6c6bf Initial commit
+
+$ ls
+desarrollo.txt  README.md
+
+```
 
 <br>
-<br>
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama4.png" width="400" /></p>
-
-<br>
-
-En este ejemplo la nueva rama creó el commit *c2b9e*. Los cambios agregados en este commit no los puede ver la rama "master" ya que, si nos cambiamos a la rama master, veremos que HEAD sigue estando en el commit *f30ab*.
-
-<br>
-
-Continuando con el ejemplo nos devolveremos a la rama "master" y al hacer un commit la línea de tiempo se bifurcará.
+Ahora cambiaremos a la rama *master* y veremos que no existirá registro del archivo y el commit hecho en *desarrollo*.
 
 ```sh
 $ git checkout master
-	Switched to branch 'master'
-	Your branch is up to date with 'origin/master'.
+Switched to branch 'master'
+
+$ ls
+README.md
+
+$ git log --oneline
+2e35a24 (HEAD -> master, origin/master) Commit desde GitHub
+ea849b9 Primer push
+3a6c6bf Initial commit
+
 ```
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/GIT/images/rama5.png" width="400" /></p>
-
-Ahora tenemos un commit creado por en la rama testing (c2b9e) y otro en la rama master (87ab2). Cada rama hará cambios en su propia línea de tiempo, los cuales al final se *fusionarán* en la rama principal del proyecto.<br>
-Con esto se demuestra el trabajo colaborativo/paralelo en un proyecto mediante ramas.
+Como pueden notar el trabajo que se haga en una rama no afecta a las demás y una vez que se quieran pasar los cambios o mejoras del proyecto a otra rama, se puede hacer mediante un *merge* o fusión.
 
 <br>
 
 ## Merge entre ramas
 
-Para integrar los cambios de una rama a otra se utiliza el concepto de **fusión** o **merge**. La sintaxis del comando es la siguiente y se debe ejecutar en la rama a la cual queremos integrar los cambios`git merge "rama_con_cambios_a_integrar"`.
+Para integrar los cambios de una rama a otra se utiliza el concepto de *fusión* o *merge*. La sintaxis del comando es la siguiente y se debe ejecutar en la rama a la cual queremos integrar los cambios `git merge "rama_con_cambios_a_integrar"`.
 
 <br>
 
 **Ejemplo**
 
-Crearemos un archivo en la rama testing de nuestro proyecto y posteriormente fucionaremos este cambio a la rama *master*.
+Si queremos fusionar los cambios que hicimos en la rama *desarrollo* a la rama *master* se haría de la siguiente manera.
+
+```sh
+$ git checkout master
+Switched to branch 'master'
+
+$ git merge desarrollo
+Updating 2e35a24..869a6ba
+Fast-forward
+ desarrollo.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 desarrollo.txt
+
+$ ls
+desarrollo.txt  README.md
+
+$ git log --oneline
+869a6ba (HEAD -> master, desarrollo) Archivo creado en la rama desarrollo
+2e35a24 (origin/master) Commit desde GitHub
+ea849b9 Primer push
+3a6c6bf Initial commit
+
+```
+
+Al ejecutar `git log --oneline` se puede notar que tanto la rama *desarrollo* como la rama *master* están apuntando al mismo commit. En este momento las ramas están fusionadas y si no requerimos más de la rama *desarrollo* la podemos eliminar.
+
+<br>
+
+## Eliminación de Ramas
+
+Para eliminar una rama se ejecuta el comando `git branch -d nombre_de_la_rama`, en este caso eliminaremos la rama *desarrollo* la cual ya fue fusionada en *master*.
+
+```sh
+$ git branch -d desarrollo
+Deleted branch desarrollo (was 869a6ba).
+```
+>**Nota**: Si la rama a eliminar tiene commits que no han sido fusionados, git notificará esto y además recomendará, si estamos seguros de eliminar la rama con sus cambios, usar el parámetro `-D`.
 
 <br>
 
@@ -249,7 +310,7 @@ not have locally. This is usually caused by another repository pushing to the sa
 
 En este caso, git avisa del conflicto en el o los archivos y propondrá una manera de solucionarlo.
 
-Podemos ejecutar un *git pull* para traer los cambios mas actualizados. Si el sistema no es capaz de realizar el merge o fusion, de forma automatica, nos creara un escenario para que nosotros decidamos que cambio queda como definitivo.
+Podemos ejecutar un *git pull* para traer los cambios mas actualizados. Si el sistema no es capaz de realizar el merge o fusión, de forma automática, nos creará un escenario para que nosotros decidamos que cambio queda como definitivo.
 
 ```
 git pull origin master
@@ -259,9 +320,9 @@ CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Si se esta usando el cliente de GIT para Windows, se señalara de forma grafica, que pasamos a una rama temporal para resolver el conflicto. Se nos añadira la etiqueta *MERGING* al nombre de la rama que estemos trabajando.
+Si se está usando el cliente de GIT Bash para Windows, se señalará de forma gráfica, que pasamos a una rama temporal para resolver el conflicto. Se nos añadirá la etiqueta *MERGING* al nombre de la rama que estemos trabajando.
 
-El archivo con conflicto aparecera con etiquetas, donde indicaran los cambios actuales con la etiqueta *HEAD*.
+El archivo con conflicto aparecerá con etiquetas, donde indicarán los cambios actuales con la etiqueta *HEAD*.
 
 ```
 # Ejemplo
@@ -272,4 +333,4 @@ Cambios dia 02 enero
 >>>>>>> 57894ff9df56e924521009fb95b17655c4598fe5
 ```
 
-Aca podemos editar y dejar los cambios que correspondan. Tambien deberemos eliminar las lineas agregaras para señalar los cambios. Luego de guardar los cambios, ya podemos ejecutar *git commit* y *git push* para sincronizar los cambios.
+Acá podemos editar y dejar los cambios que correspondan. También deberemos eliminar las líneas agregadas para señalar las modificaciones (<<< === >>>). Luego de guardar los cambios, ya podemos ejecutar *git commit* y *git push* para sincronizarlos.
