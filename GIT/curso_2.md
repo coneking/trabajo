@@ -64,6 +64,7 @@ Seleccionamos el botón <kbd>Clone or download</kbd>, copiamos la URL, ejemplo: 
 
 ```sh
 $ mkdir repo_web; cd repo_web
+
 $ git clone https://github.com/coneking/test.git
 	Cloning into 'test'...
 	remote: Counting objects: 3, done.
@@ -82,9 +83,12 @@ Nuevamente copiamos la URL de nuestro repositorio y en un directorio nuevo ejecu
 
 ```sh
 $ mkdir repo_web; cd repo_web
+
 $ git init
 	Initialized empty Git repository in C:/Users/Git/Documents/repo_web/.git/
+
 $ git remote add origin https://github.com/coneking/test.git
+
 $ git pull origin master
 	remote: Counting objects: 3, done.
 	remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
@@ -109,7 +113,8 @@ Cuando tenemos nuestro repositorio agregado en nuestro equipo podemos hacer camb
 Haremos un cambio en el achivo README.md y luego un commit.
 
 ```sh
-$ echo -e "# Nuestro repositorio de prueba\n Este un repositorio de prueba y haremos nuestro primer **push**." > README.md 
+$ echo -e "# Nuestro repositorio de prueba\n Este un repositorio de prueba y haremos nuestro primer **push**." > README.md
+
 $ git commit -am "Primer push"
 	warning: LF will be replaced by CRLF in README.md.
 	The file will have its original line endings in your working directory.
