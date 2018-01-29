@@ -1,4 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/ansible/desarrollo/images/ansible-logo.png" width="500" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Ansible/images/ansible-logo.png" width="500" /></p>
+
+<br>
 
 # ¿Qué es Ansible?
 
