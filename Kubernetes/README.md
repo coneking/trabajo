@@ -9,6 +9,12 @@ Se encarga del despliegue, la mantención y la escalabilidad de las aplicaciones
 
 <br>
 
+## Ejemplo Arquitectura
+
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Kubernetes/images/arch.png" width="400" /></p>
+
+<br>
+
 ## Conceptos
 
 - **Nodo**: Servidor físico o virtual que contiene `pods`.
