@@ -4,7 +4,8 @@
 
 ## ¿Qué es Kubernetes?
 
-Kubernetes es una herramienta open source que permite la orquestación de contenedores [docker](https://github.com/coneking/trabajo/tree/master/Docker).
+Kubernetes es una herramienta open source que permite la orquestación de aplicaciones en contenedores [docker](https://github.com/coneking/trabajo/tree/master/Docker).<br>
+Se encarga del despliegue, la mantención y la escalabilidad de las aplicaciones
 
 <br>
 
