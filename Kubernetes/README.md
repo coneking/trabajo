@@ -11,7 +11,7 @@ Se encarga del despliegue, la mantención y la escalabilidad de las aplicaciones
 
 ## Ejemplo Arquitectura
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Kubernetes/images/arch.png" width="400" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Kubernetes/images/arch.png" width="800" /></p>
 
 <br>
 
@@ -19,7 +19,6 @@ Se encarga del despliegue, la mantención y la escalabilidad de las aplicaciones
 
 - **Nodo**: Servidor físico o virtual que contiene `pods`.
 - **Pods**: Grupo de contenedores en los que se despliegan aplicaciones.
-- **Replication Controller**: Administra pods y se asegura que las ***réplicas*** de los pods estén ejecutándose. Facilita el escalar sistemas y si existe algún error en un pod, lo puede crear nuevamente.
+- **Ingress**: Administra el acceso externo a los servicios del cluster.
 - **Service**: Define como aceder a un pod o a un grupo de pods.
-
-
+- **Replication Controller**: Administra pods y se asegura que las ***réplicas*** de los pods estén ejecutándose. Facilita el escalar sistemas y si existe algún error en un pod, lo puede crear nuevamente.
