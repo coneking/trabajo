@@ -4,16 +4,16 @@
 
 Docker es un proyecto Opensource que permite desplegar aplicaciones en contenedores. Gestiona la creación y administración de contenedores.
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/docker/desarrollo/images/docker.png" width="500" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/master/Docker/images/docker.png" width="500" /></p>
 
 <br>
 
 ## ¿Qué son los contenedores?
 
 Los contenedores son una tecnología de virtualización que se basa en la ejecución de instancias de sistemas operativos desde un servidor (host) físico.
-Los contenedores utilizan las librerías, binarios, dependencias y recursos del Host local, usan una imagen base para su creación.
+Los contenedores utilizan las librerías, binarios, dependencias y recursos del host local. Usan una imagen base para su creación.
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/docker/master/images/container.png" width="500" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/master/Docker/images/container.png" width="500" /></p>
 
 <br>
 
@@ -26,20 +26,20 @@ Los contenedores utilizan las librerías, binarios, dependencias y recursos del 
 Los contenedores a diferencia de las máquinas virtuales corren bajo un sólo kernel, el del host donde se están ejecutando, así como sus binarios y librerías.
 Por otra parte, las máquinas virtuales necesitan la instalación de un Sistema Operativo por cada una de ellas, además de algún Hypervisor que soporte multiples kernel para cada máquina virtual.
 
-<p align="center"><img src="https://raw.githubusercontent.com/coneking/docker/desarrollo/images/vm-vs-container.png" width="500" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/master/Docker/images/vm-vs-container.png" width="500" /></p>
 
 <br>
 
 ## Componentes de Docker
 
-* [Docker Daemon](#docker-daemon)
-* [Docker Client](#docker-client)
-* [Docker Image](#docker-image)
-* [Docker Hub](#docker-hub)
-* [Dockerfile](#dockerfile)
-* [Docker Container](#docker-container)
-* [Docker Registry](#docker-registry)
-* [Docker Swarm](#docker-swarm)
+- [Docker Daemon](#docker-daemon)
+- [Docker Client](#docker-client)
+- [Docker Image](#docker-image)
+- [Docker Hub](#docker-hub)
+- [Dockerfile](#dockerfile)
+- [Docker Container](#docker-container)
+- [Docker Registry](#docker-registry)
+- [Docker Swarm](#docker-swarm)
 
 
 <br>
@@ -58,6 +58,7 @@ Acepta la ejecución de comandos provenientes del usuario y los comunica con el 
 
 Las imágenes son templates que contienen toda la data que se requiere para hacer correr un contenedor.
 Las imágenes están disponibles en https://hub.docker.com/, a su vez, se pueden crear imágenes propias y publicarlas en la misma página o utilizarlas localmente.
+Más información sobre [Docker Image](/Imagenes.md)
 
 
 ### Docker Hub
@@ -88,4 +89,4 @@ Se utiliza para implementar un contenedor Docker en un entorno clusterizado.
 
 <br>
 
-**Comandos Docker** [<kbd>&#10154;</kbd>](/Comandos.md)
+### **Comandos Docker** [<kbd>&#9193;</kbd>](/Docker/Comandos.md)

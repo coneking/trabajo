@@ -11,6 +11,7 @@ Ver las imágenes que se han descargado:
 Buscar imágenes de docker:
 	
 	docker search nombre_de_la_imagen
+>Por defecto las imágenes son buscadas en Docker Hub.
 
 <br>
 
@@ -25,13 +26,14 @@ Descargar una imagen:
 Iniciar un contenedor:
 	
 	docker run nombre_de_la_imagen
-(Se le asignará un ID al contenedor y un nombre, por defecto si la imagen no la tenemos, la descargará)
+>Se le asignará un ID al contenedor y un nombre, por defecto si la imagen no la tenemos, la descargará.
 
 <br>
 
 Iniciar un contenedor y dejarlo activo en background:
 	
 	docker run -d nombre_de_la_imagen
+>La opción `-d` o `--detach` mantiene el contenedor ejecutándose en background.
 
 <br>
 
@@ -41,19 +43,47 @@ Iniciar un contenedor, dejarlo activo y darle un nombre:
 
 <br>
 
-Inspeccionar un contenedor (configuración, Ip, etc):
+Iniciar un contenedor y pasarle variables de entorno:
+
+```
+docker run -d --name BD -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql
+```
+>En este ejemplo se creó el contenedor `BD` y con el parámetro `-e` se le asignó la variable **MYSQL_RANDOM_ROOT_PASSWORD=true**, la cual crea una contraseña random para el usuario root de la bd mysql.
+
+<br>
+
+Inspeccionar un contenedor (Fecha de creación, Ip, su estado, volúmenes, puntos de montaje, etc):
 	
 	docker inspect nombre_del_contendor
 ***
 <br>
 
-## Logs
+Si por algun motivo, queremos acceder a la consola de un contenedor que ya esta corriendo, podemos ejecutar lo siguiente:
+
+```
+docker exec -it id_del_contenedor bash
+```
+>Esto nos deja como root en la consola del contenedor.
+
+## Logs y Estado
 
 Ver el log de un contenedor:
 	
 	docker logs nombre_del_contenedor
-***
+
 <br>
+
+Ver el estado de un contenedor
+
+	docker top nombre_del_contenedor
+
+<br>
+
+Mostrar el uso de un contenedor
+
+	docker stats nombre_del_contenedor
+>Mostrará datos como el uso de CPU, Memoria, IO, etc.
+Si no se especifica el nombre del contenedor, traerá el estado de todos los contenedores.
 
 ## Mapear puertos
 
@@ -89,7 +119,7 @@ Con esto si eliminamos el contenedor, la data seguirá existiendo en el S.O en l
 	docker run -d --name "nombre" -v "/var/container/info:/opt/info" nombre_del_contenedor
 
 <br>
-
+ 
 Los contenedores se ejecutan en background con la opción -d, si a un contenedor se le da un comando para ejecutar, ejecutará la acción y dejará de correr.
 
 #### Ejemplo:
@@ -106,6 +136,7 @@ Para crear un contenedor e ingresar a él, se puede crear de forma interactiva c
 	docker run -it --name "nombre" ubuntu /bash
 ***
 <br>
+
 
 ## Dockerfile
 
