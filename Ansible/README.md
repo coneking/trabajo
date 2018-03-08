@@ -37,21 +37,29 @@ $ sudo rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
 
 ## Configuración
 
-Ansible orquesta los distintos nodos mediante un archivo de inventario, la ruta por defecto de este archivo es `/etc/ansible/hosts` y puede ser modificado en el archivo de configuración de ansible ubicado en `/etc/ansible/ansible.conf` habilitando la línea "".<br>
+Ansible orquesta los distintos nodos mediante un archivo de inventario, la ruta por defecto de este archivo es `/etc/ansible/hosts` y puede ser modificado en el archivo de configuración de ansible ubicado en `/etc/ansible/ansible.conf` habilitando la línea `inventory`.<br>
 El archivo hosts es de texto plano y contiene los nombres de los nodos o sus IPs y además pueden estar agrupados para despliegues controlados.<br>
 
 ### Ejemplo de archivo hosts.
 
 ```
+newhost.qa
+10.100.101.11
+
 [prod]
 10.100.101.10
 host01.prod
 myhost.dev
 
-newhost.qa
-10.100.101.11
 ```
->En el ejemplo existe el grupo "prod" el cual contiene 3 servidores y otros dos servidores que no pertenecen a ningún grupo.
+>En el ejemplo existen dos servidor (newhost.qa y 10.100.101.11) que no pertenecen a ningún grupo y el grupo *prod* que tiene tres servidores.
 
+<br>
+Para listar los servidores del archivo inventario por defecto `/etc/ansible/hosts`, se utiliza el siguiente comando.
+
+```
+$ ansible --list-hosts all
+```
+>El parámetro *all* puede ser modificado por un grupo de servidores específico, un rol o servidores como tal. Hablaremos de los grupos de servidores más adelante.
 
 Con esta configuración básica ya es posible realizar automatizaciones. En la siguiente sección abordaremos la sintaxis para utilizar algunos módulos.
