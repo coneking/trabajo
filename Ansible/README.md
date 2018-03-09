@@ -1,6 +1,13 @@
 <p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Ansible/images/ansible-logo.png" width="500" /></p>
 
 <br>
+# Contenidos.
+
+- [¿Qué es Ansible?](#que-es-ansible)
+- [Instalación](#instalacion)
+- [Configuración básica](#configuracion-basica)
+	- [Ejemplo de archivo hosts](#ejemplo-de-archivo-hosts)
+- [Inventario](/Inventario.md)
 
 # ¿Qué es Ansible?
 
@@ -9,7 +16,7 @@ Ansible es una herramienta que permite el despliegue automatizado de tareas. Es 
 Ansible tiene un diseño minimalista y a diferecia de otros programas como Puppet o Chef, no necesita la instalación de agentes en los nodos, sólo hace falta que estos tengan python 2.6, 2.7 o 3.5 o superior.<br>
 
 
-## Método de instalación.
+# Instalación.
 
 Como requisito Ansible necesita python 2.4 o posterior para su instalación.<br>
 
@@ -35,12 +42,12 @@ $ sudo rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
 >Para sistemas basados en Debian o Redhat utilizar su propio gestor de paquetes como `apt` o `yum`.
 
 
-## Configuración
+# Configuración básica
 
 Ansible orquesta los distintos nodos mediante un archivo de inventario, la ruta por defecto de este archivo es `/etc/ansible/hosts` y puede ser modificado en el archivo de configuración de ansible ubicado en `/etc/ansible/ansible.conf` habilitando la línea `inventory`.<br>
 El archivo hosts es de texto plano y contiene los nombres de los nodos o sus IPs y además pueden estar agrupados para despliegues controlados.<br>
 
-### Ejemplo de archivo hosts.
+## Ejemplo de archivo hosts.
 
 ```
 newhost.qa
@@ -60,6 +67,6 @@ Para listar los servidores del archivo inventario por defecto `/etc/ansible/host
 ```
 $ ansible --list-hosts all
 ```
->El parámetro *all* puede ser modificado por un grupo de servidores específico, un rol o servidores como tal. Hablaremos de los grupos de servidores más adelante.
+>El parámetro *all* puede ser modificado por un servidor específico o un grupo de servidores. Hablaremos de ello un poco más adelante.
 
-Con esta configuración básica ya es posible realizar automatizaciones. En la siguiente sección abordaremos la sintaxis para utilizar algunos módulos.
+Con esta configuración básica ya es posible ejecutar tareas en los distintos servidores.
