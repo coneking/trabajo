@@ -58,6 +58,7 @@ Acepta la ejecución de comandos provenientes del usuario y los comunica con el 
 
 Las imágenes son templates que contienen toda la data que se requiere para hacer correr un contenedor.
 Las imágenes están disponibles en https://hub.docker.com/, a su vez, se pueden crear imágenes propias y publicarlas en la misma página o utilizarlas localmente.
+Más información sobre [Docker Image](/Docker/Imagenes.md)
 
 
 ### Docker Hub
