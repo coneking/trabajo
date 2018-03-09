@@ -1,13 +1,14 @@
 <p align="center"><img src="https://raw.githubusercontent.com/coneking/trabajo/desarrollo/Ansible/images/ansible-logo.png" width="500" /></p>
 
 <br>
+
 # Contenidos.
 
 - [¿Qué es Ansible?](#que-es-ansible)
 - [Instalación](#instalacion)
 - [Configuración básica](#configuracion-basica)
 	- [Ejemplo de archivo hosts](#ejemplo-de-archivo-hosts)
-- [Inventario](/Inventario.md)
+- [Inventario](/Ansible/Inventario.md)
 
 # ¿Qué es Ansible?
 
