@@ -4,9 +4,9 @@
 
 # Contenidos.
 
-- [¿Qué es Ansible?](#que-es-ansible)
-- [Instalación](#instalacion)
-- [Configuración básica](#configuracion-basica)
+- [¿Qué es Ansible?](#qué-es-ansible)
+- [Instalación](#instalación)
+- [Configuración básica](#configuración-básica)
 	- [Ejemplo de archivo hosts](#ejemplo-de-archivo-hosts)
 - [Inventario](/Ansible/Inventario.md)
 
