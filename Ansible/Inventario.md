@@ -2,6 +2,20 @@
 
 Como se indicó anteriormente para ejecutar tareas, ansible utiliza un inventario donde se define el listado de servidores. El archivo por defecto (texto plano) que usa ansible como inventario de servidores es `/etc/ansible/hosts`, este archivo puede ser modificado en `/etc/ansible/ansible.cfg` de forma global habilitando la opción `inventory`.<br>
 El archivo puede contener la IP de los servidores o su host, dependiendo de la resolución de nombres.<br>
+
+**Ejemplo de archivo hosts**
+
+```
+newhost.qa
+10.100.101.11
+
+[prod]
+10.100.101.10
+host01.prod
+myhost.dev
+
+```
+
 Para utilizar otro archivo como inventario podemos llamarlo con el parámetro `-i` seguido de la ruta del archivo.
 
 **Ejemplo**
@@ -51,6 +65,7 @@ Antes que todo ampliaremos nuestro inventario agregando los grupos *app*, *web* 
 ```
 echo -e "\n[app]\nmy_app01\nmy_app02\n\n[web]\nmy_web01\nmy_web02\nmy_web03\n\n[db]\ndb01\ndb02" >> inventario
 ```
+>**Nota:** Un host puede existir en más de un grupo.
 
 <br>
 
@@ -132,3 +147,11 @@ ansible --list-hosts \!web
     my_app01
     my_app02
 ```
+
+Estos son algunos ejemplos con los que se puede filtrar una determinada cantidad de servidores para ejecutar tareas.
+
+<br>
+
+## Parámetros
+
+En el archivo de inventario se pueden definir algunos parámetros para una mejor administración. Algunos parámetros son; el tipo de conexión, puerto, usuario de conexión, contraseña. En el siguiente link se muestra el listado de parámetros disponibles ![Ansible-parameters](http://docs.ansible.com/ansible/latest/intro_inventory.html#list-of-behavioral-inventory-parameters).
