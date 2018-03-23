@@ -5,8 +5,8 @@
 ## Descargar y descomprimir Kismatic
 
 ```sh
-$ mkdir /home/usuario/kismatic; cd /home/usuario/kismatic
-$ wget https://github.com/apprenda/kismatic/releases/download/v1.7.0/kismatic-v1.7.0-linux-amd64.tar.gz -O | tar -xz
+$ mkdir $HOME/kismatic; cd $HOME/kismatic
+$ wget https://github.com/apprenda/kismatic/releases/download/v1.7.0/kismatic-v1.7.0-linux-amd64.tar.gz -O - | tar -xz
 ```
 >**Nota:** Verificar la última versión de kismatic en https://github.com/apprenda/kismatic/releases
 
