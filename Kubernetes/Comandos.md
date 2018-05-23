@@ -1,26 +1,14 @@
-# Comandos Kubernetes
+# Comandos Kubectl
 
-Revisar el uso de los nodos
-```
-$ kubectl top nodes
-```
-<br>
 
-Revisar el uso de los pods
+Listar los diferentes contextos de kubernetes:
 ```
-$ kubectl top -n "nombre_del_namespace" pod
-```
-
-<br>
-
-Ver los cluster configurados.
-```
-$ kubectl config get-contexts
+kubectl config get-contexts
 CURRENT   NAME      CLUSTER   AUTHINFO    NAMESPACE
 *         cl_prod   cl_prod   admin
           cl_lab    cl_lab    admin-lab
 ```
->El `*` indica el cluster en el que estamos actualmente.
+>**Nota:** El caracter `*` indica el cluster actual
 
 <br>
 
@@ -31,27 +19,44 @@ NAME
 cl_prod
 cl_lab
 ```
-<br>
-
-Ver el cluster en el que nos encontramos.
-```
-$ kubectl config current-context
-cl_prod
-```
 
 <br>
 
-Cambiar entre clusters.
+Mostrar el actual contexto:
 ```
-$ kubectl use-context cl_lab
-Switched to context "cl_lab".
+kubectl config current-context
 ```
+<br>
+
+Cambiar entre contextos:
+```
+kubectl config use-context "nombre_del_contexto"
+```
+<br>
+
+Poner un nodo en mantenimiento:
+```
+kubectl drain my-node
+```
+>**Nota:** Si el nodo tiene Pods activos, se moverán a otro nodo del cluster.
 
 <br>
 
-Consultar nodos de un cluster.
+Quitar un nodo del cluster (unschedulable):
 ```
-$ kubectl get nodes
+kubectl cordon "nombre_del_nodo"
+```
+<br>
+
+Reintegrar un nodo al cluster (schedulable):
+```
+kubectl uncordon "nombre_del_nodo"
+```
+<br>
+
+Listar los nodos del cluster:
+```
+kubectl get nodes
 NAME           STATUS                     ROLES     AGE       VERSION
 nodo1   Ready,SchedulingDisabled   <none>    16h       v1.7.4
 nodo2   Ready                      <none>    66d       v1.7.4
@@ -64,76 +69,102 @@ nodo8   Ready                      <none>    100d      v1.7.4
 nodo9   Ready,SchedulingDisabled   <none>    100d      v1.7.4
 nodo10  Ready,SchedulingDisabled   <none>    100d      v1.7.4
 ```
+>**Nota:** "-o wide" para mostrar más información.
 
 <br>
 
-Quitar un nodo del cluster.
+Mostrar el estado de los nodos:
 ```
-$ kubectl drain "nombre_del_nodo" --ignore-daemonsets --force --delete-local-data
-node "nombre_del_nodo" cordoned
-WARNING: Ignoring DaemonSet-managed pods: tick-polling-telegraf-ds-6g3h3, calico
-t or StatefulSet: kube-proxy-nombre_del_nodo
-node "nombre_del_nodo" drained
+kubectl top nodes
 ```
+>**Nota:** "-o wide" para mostrar más información.
 
 <br>
 
-Reintegrar un nodo al cluster.
+Mostrar información de un nodo específico:
 ```
-$ kubectl uncordon "nombre_del_nodo"
+kubectl describe node "nombre_del_nodo"
 ```
+<br>
+
+Listar namespace:
+```
+kubectl get namespace
+```
+>**Nota:** namespace = ns
 
 <br>
 
-Listar los namespaces.
+Crear un namespace:
 ```
-$ kubectl get namespaces
-NAME          STATUS    AGE
-default       Active    150d 
-My_ns         Active    40d
-Other_ns      Active    32d
+kubectl create namespace "nombre_para_namespace"
 ```
+<br>
+
+Listar recursos de un namespace:
+Ejemplo `pod`.
+```
+kubectl -n "nombre_namespace" get pods
+```
+>**Nota:** "-o wide" para mostrar más información.
 
 <br>
 
-Listar todos los pods de todos los namespaces.
+Listar más de un recurso de un namespace al mismo tiempo:
+Ejemplo `service`, `pod`, `replicaset`, `deployment`
 ```
-$ kubectl get pods --all-namespace
-```
-
-<br>
-
-Listar los pods de un namespace
-```
-$ kubectl -n "nombre_del_namespace" get pods
-```
-
-<br>
-
-Listar los pods con el nodo y la IP que los contiene.
-```
-$ kubectl -n "nombre_del_namespace" get pods -o wide
+kubectl -n "nombre_namespace" get svc,po,rs,deploy
 ```
 
 <br>
 
-Revisar logs de un pod
+Listar todos los pods de todos los namespace:
 ```
-$ kubectl -n "nombre_del_namespace" logs "nombre_del_pod"
-```
->Si el pod está compuesto de más de un contenedor se debe elegir el contenedor (la opción `-f` es paracontinuar revisando el log)
-`kubectl -n "nombre_del_namespace" logs "nombre_del_pod" -c "nombre_del_contenedor" -f`
-
-<br>
-
-Información detallada de un pod
-```
-$ kubectl -n "nombre_del_namespace" describe pods "nombre_del_pod"
+kubectl get pod --all-namespaces
 ```
 
 <br>
 
-Eliminar un pod.
+Mostrar un recurso en formato `yaml`:
+Ejemplo `service`.
 ```
-$ kubectl -n "nombre_del_namespace" delete pods "nombre_del_pod"
+kubectl -n "nombre_namespace" get svc -o yaml
+```
+>**Nota:** También se puede mostrar en formato json.
+
+<br>
+
+Mostrar información de un recurso específico:
+Ejemplo `ingress`.
+```
+kubectl -n "nombre_namespace" describe ingress
+```
+
+<br>
+
+Eliminar un recurso específico.
+Ejemplo `pod`.
+```
+kubectl -n "nombre_del_namespace" delete pod "nombre_del_pod"
+
+<br>
+
+Ver logs de un pod:
+```
+kubectl -n "nombre_namespace" logs "nombre_pod"
+```
+>**Nota:** Para ver logs en tiempo real `logs -f`. Ver las últimas 20 líneas `logs --tail=20`
+
+<br>
+
+Ver logs del contenedor de un pod (pods con más de un contenedor)
+```
+kubectl -n "nombre_namespace" logs "nombre_pod" -c "nombre_contenedor"
+```
+
+<br>
+
+Revisar el uso de los pods
+```
+$ kubectl top -n "nombre_del_namespace" pod
 ```
