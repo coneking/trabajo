@@ -146,6 +146,7 @@ Eliminar un recurso específico.
 Ejemplo `pod`.
 ```
 kubectl -n "nombre_del_namespace" delete pod "nombre_del_pod"
+```
 
 <br>
 
@@ -161,10 +162,33 @@ Ver logs del contenedor de un pod (pods con más de un contenedor)
 ```
 kubectl -n "nombre_namespace" logs "nombre_pod" -c "nombre_contenedor"
 ```
+>**Nota:** Con el parámetro `-c` se indica el nombre del contenedor a revisar. 
 
 <br>
 
 Revisar el uso de los pods
 ```
-$ kubectl top -n "nombre_del_namespace" pod
+$ kubectl -n "nombre_del_namespace" top pod
 ```
+
+<br>
+
+Ingresar a un contenedor de un pod (pods con más de un contenedor)
+```
+kubectl -n "nombre_namespace" logs "nombre_pod" -c "nombre_contenedor"
+```
+>**Nota:** Con el parámetro `-c` se indica el nombre del contenedor a ingresar.
+
+<br>
+
+Habilitar proxy del cluster Kubernetes
+```
+kubectl proxy
+```
+
+Crear despliegue mediante un archivo `yaml`.
+```
+kubectl create -f "/directorio/del/archivo.yaml"
+```
+
+
